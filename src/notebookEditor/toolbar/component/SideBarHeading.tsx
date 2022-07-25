@@ -5,9 +5,7 @@ import { BsBook } from 'react-icons/bs';
 import { RiFileAddLine } from 'react-icons/ri';
 
 // ********************************************************************************
-interface Props {
-  background?: string;
-}
+interface Props { background?: string; }
 export const SideBarHeading: React.FC<Props> = ({ background }) => {
   // == State =====================================================================
   const isLoading = false/*Temporary placeholder*/;

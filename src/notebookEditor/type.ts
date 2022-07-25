@@ -1,5 +1,9 @@
+import { AsyncNode } from './extension/asyncNode/AsyncNode';
 import { Bold } from 'notebookEditor/extension/bold/Bold';
 import { CodeBlock } from './extension/codeblock/CodeBlock';
+import { CodeBlockAsyncNode } from './extension/codeBlockAsyncNode/CodeBlockAsyncNode';
+import { DemoAsyncNode } from './extension/demoAsyncNode/DemoAsyncNode';
+import { Demo2AsyncNode } from './extension/demo2AsyncNode/Demo2AsyncNode';
 import { Document } from 'notebookEditor/extension/document/Document';
 import { DropCursor } from 'notebookEditor/extension/dropCursor/DropCursor';
 import { GapCursor } from 'notebookEditor/extension/gapcursor/GapCursor';
@@ -22,14 +26,13 @@ export const editorDefinition = {
   //       to reflect the new changes. It is used to validate the document and
   //       perform operations on the server-side and must be always be in sync.
   // see: src/common/notebookEditor/prosemirror/schema.ts.
-  extensions: [ Bold, CodeBlock, DropCursor, Document, GapCursor, Heading, Highlight, History, NodeViewRemoval, Paragraph, SetDefaultMarks, Style, Text, TextStyle, UniqueNodeId ],
+  extensions: [ AsyncNode, Bold, CodeBlock, CodeBlockAsyncNode, DemoAsyncNode, Demo2AsyncNode, DropCursor, Document, GapCursor, Heading, Highlight, History, NodeViewRemoval, Paragraph, SetDefaultMarks, Style, Text, TextStyle, UniqueNodeId ],
   editorProps: { attributes: { class: 'Editor'/*SEE: /index.css*/ } },
 
   autofocus: true/*initially has focus*/,
   content: ''/*initially empty*/,
 };
 
-//
 /**
  * NOTE: The following execution order goes from top-first to bottom-last
  *       (SEE: FeatureDoc, Changes section)
@@ -40,27 +43,39 @@ export const editorDefinition = {
  * 2. NodeViewRemoval
  * 3. SetDefaultMarks
  * 4. Paragraph
- * 5. all other extensions (in registration order, (SEE: Extension array above))
+ * 5. CodeBlockAsyncNode
+ * 6. AsyncNode
+ * 7. all other extensions (in registration order, (SEE: Extension array above))
+ * 8. Text
  *
  * onTransaction
  * 1. UniqueNodeId
  * 2. NodeViewRemoval
  * 3. SetDefaultMarks
  * 4. Paragraph
- * 5. all other extensions (in registration order, (SEE: Extension array above))
+ * 5. CodeBlockAsyncNode
+ * 6. AsyncNode
+ * 7. all other extensions (in registration order, (SEE: Extension array above))
+ * 8. Text
  *
  * onSelectionUpdate
  * 1. UniqueNodeId
  * 2. NodeViewRemoval
  * 3. SetDefaultMarks
  * 4. Paragraph
- * 5. all other extensions (in registration order, (SEE: Extension array above))
+ * 5. CodeBlockAsyncNode
+ * 6. AsyncNode
+ * 7. all other extensions (in registration order, (SEE: Extension array above))
+ * 8. Text
  *
  * onUpdate
  * 1. UniqueNodeId
  * 2. NodeViewRemoval
  * 3. SetDefaultMarks
  * 4. Paragraph
- * 5. all other extensions (in registration order, (SEE: Extension array above))
+ * 5. CodeBlockAsyncNode
+ * 6. AsyncNode
+ * 7. all other extensions (in registration order, (SEE: Extension array above))
+ * 8. Text
  *
  */

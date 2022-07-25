@@ -11,7 +11,7 @@ import { ExtensionName, ExtensionPriority, NoOptions, NoStorage } from 'notebook
 // the set of Node 'types' whose nodeViews are to be checked for and removed
 // when they no longer exist (the inclusion set). Like other extensions, the names
 // of nodes that require this functionality must be added here
-const nodesWithNodeView = new Set<NodeName>([NodeName.CODEBLOCK]);
+const nodesWithNodeView = new Set<NodeName>([NodeName.CODEBLOCK, NodeName.DEMO_ASYNCNODE, NodeName.DEMO2_ASYNCNODE]);
 
 // == Extension ===================================================================
 export const NodeViewRemoval = Extension.create<NoOptions, NoStorage>({

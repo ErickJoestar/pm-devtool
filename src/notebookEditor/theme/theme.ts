@@ -11,12 +11,13 @@ export const theme: Record<NodeName, Partial<Record<AttributeType, string>>> = {
   [NodeName.PARAGRAPH]: {
     [AttributeType.FontSize]: '16px',
     [AttributeType.TextColor]: '#333',
-    [AttributeType.MarginLeft]: '4px',
   },
   [NodeName.TEXT]: {},
 
   // Custom Nodes
   [NodeName.CODEBLOCK]: {},
+  [NodeName.DEMO_ASYNCNODE]: {},
+  [NodeName.DEMO2_ASYNCNODE]: {},
 } as const;
 
 // == CSS =========================================================================

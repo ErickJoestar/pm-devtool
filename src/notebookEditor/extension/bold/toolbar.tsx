@@ -1,6 +1,6 @@
 import { BiBold } from 'react-icons/bi';
 
-import { isHeadingNode, isParagraphNode, MarkName } from 'common';
+import { isDemo2AsyncNode, isHeadingNode, isParagraphNode, MarkName } from 'common';
 
 import { isNodeSelection } from 'notebookEditor/extension/util/node';
 import { ToolItem } from 'notebookEditor/toolbar/type';
@@ -18,7 +18,7 @@ export const markBold: ToolItem = {
   shouldBeDisabled: (editor) => {
     const { selection } = editor.state;
     if(isNodeSelection(selection)) return true;
-    if(isParagraphNode(selection.$anchor.parent) || isHeadingNode(selection.$anchor.parent)) return false;
+    if(isParagraphNode(selection.$anchor.parent) || isDemo2AsyncNode(selection.$anchor.parent) || isHeadingNode(selection.$anchor.parent)) return false;
     /* else -- selection somewhere that does not allow bold */
 
     return true;

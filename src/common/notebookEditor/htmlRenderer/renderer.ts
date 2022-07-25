@@ -4,6 +4,8 @@ import { isStyleAttribute, snakeCaseToKebabCase, HTMLAttributes } from '../attri
 import { NotebookDocumentContent } from '../document';
 import { BoldMarkRendererSpec } from '../extension/bold';
 import { CodeBlockNodeRendererSpec } from '../extension/codeBlock';
+import { DemoAsyncNodeRendererSpec } from '../extension/demoAsyncNode';
+import { Demo2AsyncNodeRendererSpec } from '../extension/demo2AsyncNode';
 import { DocumentNodeRendererSpec } from '../extension/document';
 import { HeadingNodeRendererSpec } from '../extension/heading';
 import { isParagraphJSONNode, ParagraphNodeRendererSpec } from '../extension/paragraph';
@@ -19,6 +21,8 @@ import { getRenderTag, AttributeRenderer, HTMLString, MarkRendererSpec, NodeRend
 // == Type ========================================================================
 export const NodeRendererSpecs: Record<NodeName, NodeRendererSpec> = {
   [NodeName.CODEBLOCK]: CodeBlockNodeRendererSpec as any/*FIXME!!!*/,
+  [NodeName.DEMO_ASYNCNODE]: DemoAsyncNodeRendererSpec as any/*FIXME!!!*/,
+  [NodeName.DEMO2_ASYNCNODE]: Demo2AsyncNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.DOC]: DocumentNodeRendererSpec,
   [NodeName.HEADING]: HeadingNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.PARAGRAPH]: ParagraphNodeRendererSpec as any/*FIXME!!!*/,

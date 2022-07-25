@@ -45,8 +45,7 @@ export const computeState = (doc: JSONNode): RendererState => {
     if(!node.content || node.content.length < 1) return true/*keep searching (but nothing else to do)*/;
 
     // traverse all of its children
-    const childCount = node.content.length;
-    for(let i=0; i<childCount; i++) {
+    for(let i=0; i<node.content.length; i++) {
       if(!incorporateNode(node.content[i])) return false/*done traversing*/;
     }
 
@@ -55,7 +54,6 @@ export const computeState = (doc: JSONNode): RendererState => {
 
   // traverse every node on the document in a DFS order to generate the visualId
   incorporateNode(doc);
-
   return rendererState;
 };
 

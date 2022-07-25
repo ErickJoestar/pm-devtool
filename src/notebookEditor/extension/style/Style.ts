@@ -2,7 +2,7 @@ import { Extension } from '@tiptap/core';
 
 import { ExtensionName, NoOptions, NoStorage } from 'notebookEditor/model/type';
 
-import { setStyleCommand } from './command';
+import { setStyleCommand } from './commands';
 
 // ********************************************************************************
 // == Extension ===================================================================

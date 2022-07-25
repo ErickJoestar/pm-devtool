@@ -25,7 +25,6 @@ export const EditorUserInteractions = () => {
         // Focus Sidebar on Cmd + Option + .
         case 'Period': {
           if(!(event.altKey && event.metaKey)) return/*nothing to do*/;
-
           const firstToolItem = [...document.querySelectorAll(`[datatype=${TOOL_ITEM_DATA_TYPE}]`)][0/*first one*/]/*necessary for type-guard below*/;
           if(!isValidHTMLElement(firstToolItem)) {
             console.warn('toolItem is not a valid HTML Element');
@@ -41,7 +40,7 @@ export const EditorUserInteractions = () => {
         case 'Comma': {
           if(!(event.altKey && event.metaKey)) return;
           isNodeSelection(editor.state.selection)
-            ? editor.commands.setNodeSelection(editor.state.selection.$anchor.pos)
+            ? editor.chain().focus().setNodeSelection(editor.state.selection.$anchor.pos).run()
             : editor.commands.focus();
           event.preventDefault();
           break;

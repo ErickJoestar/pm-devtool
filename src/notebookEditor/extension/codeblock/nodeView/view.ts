@@ -50,5 +50,6 @@ export class CodeBlockView extends AbstractNodeView<CodeBlockNodeType, CodeBlock
     const visualId = this.storage.getVisualId(this.node.attrs[AttributeType.Id]);
     this.dom.setAttribute(DATA_VISUAL_ID, visualId);
     this.contentDOM.setAttribute('style', `${CODEBLOCK_PARAGRAPH_STYLE} ${getWrapStyles(this.node.attrs[AttributeType.Wrap])}`);
+    this.contentDOM.setAttribute('spellcheck', 'false');
   }
 }

@@ -11,18 +11,39 @@ import { AbstractNodeView } from './AbstractNodeView';
 import { AbstractNodeModel } from './AbstractNodeModel';
 
 // ********************************************************************************
-// Controls the
-// == Class =======================================================================
+/**
+ * Abstract class that holds the common logic for all node controllers.
+ * A node controlled is used as a way to hold all the required functionality to
+ * implement a {@link ProseMirrorNodeView}, it defines and interacts with the model
+ * and the view of the node.
+ * @see NodeViewStorage
+ * @see AbstractNodeView
+ * @see AbstractNodeModel
+ */
 export abstract class AbstractNodeController<NodeType extends ProseMirrorNode, Storage extends NodeViewStorage<AbstractNodeController<NodeType, any, any, any>> = any, NodeModel extends AbstractNodeModel<NodeType, any> = any, NodeView extends AbstractNodeView<NodeType, Storage, NodeModel> = any>implements ProseMirrorNodeView {
   // == ProseMirror NodeView ======================================================
+  /**
+   * The outer DOM node that represents the document node.
+   * A {@link ProseMirrorNodeView} required property.
+   * @see AbstractNodeView
+   */
   public readonly dom: HTMLElement;
+  /**
+   * The DOM node that should hold the node's content. Only meaningful if its node
+   * type is not a leaf node type. When this is present, ProseMirror will take
+   * care of rendering the node's children into it. When it is not present, the
+   * node view itself is responsible for rendering (or deciding not to render) its
+   * child nodes.
+   * A {@link ProseMirrorNodeView} required property.
+   * @see AbstractNodeView
+   */
   public contentDOM?: Node | null | undefined;
 
   // ==============================================================================
-  // must be initialized by the subclass
+  // NOTE: must be initialized by the subclass
   readonly nodeView: NodeView;
 
-  // must be initialized by the subclass
+  // NOTE: must be initialized by the subclass
   readonly nodeModel: NodeModel;
 
   public readonly storage: Storage;
@@ -48,6 +69,11 @@ export abstract class AbstractNodeController<NodeType extends ProseMirrorNode, S
   }
 
   // == PM Life-Cycle =============================================================
+  /**
+   * Updates the DOM node that represents the Node. This method is called by
+   * ProseMirror and updates the {@link AbstractNodeView}.
+   * A {@link ProseMirrorNodeView} required property.
+   */
   public update(node: ProseMirrorNode<NotebookSchemaType>): boolean {
     if(this.node.type.name !== node.type.name) return false/*different node so nothing was updated*/;
 

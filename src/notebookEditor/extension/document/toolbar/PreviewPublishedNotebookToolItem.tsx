@@ -27,11 +27,11 @@ export const PreviewPublishedNotebookToolItem: React.FC<Props> = ({ editor }) =>
       if(isSequence) {
         event.preventDefault();
         setIsOpen(prevValue => !prevValue);
-      }
+      } /* else -- isn't the sequence, so nothing to do */
     };
     document.addEventListener('keydown', handleKeyDown);
 
-    // Remove listener on unmount.
+    // remove listener on unmount
     return () => { document.removeEventListener('keydown', handleKeyDown); };
   }, [isOpen]);
 

@@ -6,7 +6,7 @@ import { getNodeOutputSpec, setAttributeParsingBehavior } from 'notebookEditor/e
 import { handleBlockArrowDown, handleBlockArrowUp, handleBlockBackspace } from 'notebookEditor/extension/util/node';
 import { NoOptions } from 'notebookEditor/model/type';
 
-import { toggleBlockNodeCommand } from './command';
+import { toggleCodeBlockCommand } from './command';
 import { codeBlockOnTransaction } from './transaction';
 import { DEFAULT_CODEBLOCK_ID } from './type';
 import { CodeBlockController } from './nodeView/controller';
@@ -28,7 +28,7 @@ export const CodeBlock = Node.create<NoOptions, CodeBlockStorage>({
   },
 
   // -- Command -------------------------------------------------------------------
-  addCommands() { return { toggleCodeBlock: toggleBlockNodeCommand }; },
+  addCommands() { return { toggleCodeBlock: toggleCodeBlockCommand }; },
   addKeyboardShortcuts() {
     return {
       // toggle a code block

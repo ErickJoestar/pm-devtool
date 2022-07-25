@@ -13,6 +13,8 @@ export class NoPluginState {
 
 // == Extension ===================================================================
 export enum ExtensionName {
+  ASYNC_NODE = 'asyncNode',
+  CODEBLOCK_ASYNC_NODE = 'codeBlockAsyncNode',
   DROP_CURSOR = 'dropCursor',
   GAP_CURSOR = 'gapCursor',
   GAP_CURSOR_ALLOW = 'allowGapCursor'/*CHECK: is this the right place for this?*/,
@@ -41,6 +43,19 @@ export enum ExtensionPriority {
   //       first block node encountered in the editor extension array
   //       (SEE: notebookEditor/type.ts)
   PARAGRAPH = 117,
+
+  // NOTE: Since codeBlockAsyncNodes are a subset of async nodes that can be
+  //       dirty depending on whether or not specific criteria is met, the
+  //       asyncNodes must check if they are dirty after the codeBlocks have
+  //       been modified accordingly (e.g. codeBlockReferences and hashes) have
+  //       been recomputed. Hence this must run before asyncNodes
+  CODEBLOCK_ASYNC_NODE = 116,
+
+  // NOTE: AsyncNodes effectively 'disable' the undo command while they are
+  //       performing async operations. In order for the undo event (CMD-Z) to
+  //       be handled before the history extension does its job
+  //       (SEE: History.ts) they're given a higher priority than 100
+  ASYNC_NODE = 115,
 
   // NOTE: Since the text extension adds a \t whenever Tab is pressed, but this
   //       behavior is not always guaranteed to be the desired one (e.g. when

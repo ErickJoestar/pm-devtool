@@ -14,8 +14,8 @@ import { ToolbarBreadcrumbs } from './ToolbarBreadcrumbs';
 export const SideBar = () => {
   // == State =====================================================================
   const [showDebugger, setShowDebugger] = useState(false);
-  const [selectedDepth, setSelectedDepth] = useState<SelectionDepth | undefined/*current node*/>(undefined);
   const editor = useValidatedEditor();
+  const [selectedDepth, setSelectedDepth] = useState<SelectionDepth | undefined/*current node*/>(undefined);
 
   // == Effects ===================================================================
   useEffect(() => {

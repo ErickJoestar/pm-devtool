@@ -7,6 +7,7 @@ import { RiHeading } from 'react-icons/ri';
 import { HeadingLevel, NodeName } from 'common';
 
 import { markBold } from 'notebookEditor/extension/bold/toolbar';
+import { codeBlockToolItem } from 'notebookEditor/extension/codeblock/toolbar';
 import { fontSizeToolItem, spacingToolItem, textColorToolItem } from 'notebookEditor/extension/textStyle/toolbar';
 import { Toolbar, ToolItem } from 'notebookEditor/toolbar/type';
 
@@ -37,6 +38,7 @@ export const HeadingToolbar: Toolbar = {
 
   toolsCollections: [
     [
+      codeBlockToolItem,
       markBold,
       heading1,
       heading2,

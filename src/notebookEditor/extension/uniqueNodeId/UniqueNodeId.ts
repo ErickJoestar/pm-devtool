@@ -12,7 +12,7 @@ export const DEFAULT_NODE_ID = 'Default';
 
 // ================================================================================
 // the set of Node 'types' that are to be checked for IDs (the 'inclusion set')
-const includedNodes: Set<string> = new Set([NodeName.CODEBLOCK, NodeName.HEADING]);
+const includedNodes: Set<string> = new Set([NodeName.DEMO_ASYNCNODE, NodeName.DEMO2_ASYNCNODE, NodeName.CODEBLOCK, NodeName.HEADING]);
 
 // is the specified Node in the inclusion set?
 const isUuidNode = (node: ProsemirrorNode<any>) =>

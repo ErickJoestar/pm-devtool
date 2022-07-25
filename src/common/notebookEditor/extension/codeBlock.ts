@@ -73,6 +73,6 @@ export const isCodeBlockJSONNode = (node: JSONNode): node is CodeBlockJSONNodeTy
 // == CSS =========================================================================
 export const CODEBLOCK_OUTER_CONTAINER_STYLE = 'align-items: center;  display: flex; padding: 10px; gap: 10px;';
 export const CODEBLOCK_INNER_CONTAINER_STYLE = 'width: 100%; background: #EDF2F7; border: 1px solid; border-color: #CBD5E0; border-radius: 4px; overflow: auto; padding-left: 4px;';
-export const CODEBLOCK_PARAGRAPH_STYLE = 'min-height: 1.5em; font-size: 16px; ';
+export const CODEBLOCK_PARAGRAPH_STYLE = 'min-height: 1.5em; font-size: 16px;';
 export const CODEBLOCK_VISUAL_ID_STYLE = 'font-size: 14px; font-weight: 600;'/*bold*/;
 export const getWrapStyles = (isWrap: boolean) => `white-space: ${isWrap ? 'pre' : 'break-spaces'};`;

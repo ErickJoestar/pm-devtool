@@ -62,6 +62,8 @@ export const DefaultTheme: Theme = {
   nodes:{
     [NodeName.CODEBLOCK]: {/*no defined value*/},
     [NodeName.DOC]: {/*no defined value*/},
+    [NodeName.DEMO_ASYNCNODE]: {/*no defined value*/},
+    [NodeName.DEMO2_ASYNCNODE]: {/*no defined value*/},
     [NodeName.HEADING]: {/*no defined value*/},
     [NodeName.PARAGRAPH]: {
       [AttributeType.TextColor]: '#000',
@@ -98,6 +100,8 @@ export const GoogleDocsTheme: Theme = {
   nodes:{
     [NodeName.CODEBLOCK]: {/*no defined value*/},
     [NodeName.DOC]: {/*no defined value*/},
+    [NodeName.DEMO_ASYNCNODE]: {/*no defined value*/},
+    [NodeName.DEMO2_ASYNCNODE]: {/*no defined value*/},
     [NodeName.HEADING]: {/*no defined value*/},
     [NodeName.PARAGRAPH]: {
       [AttributeType.FontSize]: '11pt',

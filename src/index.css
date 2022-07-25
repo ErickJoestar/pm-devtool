@@ -17,8 +17,10 @@
 
 /* == Editor =================================================================== */
 .Editor { outline: 1px solid transparent; }
-.inlineNodeContainer { position: relative; display: inline-block; }
-.selected { outline: 2px solid black; }
+.inlineNodeContainer { position: relative; display: inline; }
+.ProseMirror-selectednode > span/*target inline nodes with content (e.g. asyncNodes)*/{
+  outline: 2px solid black;
+}
 
 /* -- Highlight ---------------------------------------------------------------- */
 .ProseMirror-focused .selected_text {
@@ -38,14 +40,26 @@
 .clickable { cursor: pointer; }
 
 /* -- AsyncNode ---------------------------------------------------------------- */
-[data-asyncnodestate]::after {
+[data-demoasyncnodestate]::after {
   content: '';
   display: inline-block;
-  width: 0.75em;
-  height: 0.75em;
-  margin-left: 0.35em;
+  width: 12px;
+  height: 12px;
+  margin-left: 4px;
   border-radius: 7.5px;
   background-color: var(--status-color);
+}
+
+/* .. DemoAsyncNode ............................................................ */
+[data-node-type="demoAsyncNode"] > [data-async-node-dirty] {
+  border-color: red !important;
+}
+
+/* .. Demo2AsyncNode ........................................................... */
+/* NOTE: Demo2AsyncNode dirty state is handled through its view */
+[data-node-type="demo2AsyncNode"] .demo2asyncNodeReplacedText {
+  font-weight: bold;
+  color: green;
 }
 
 /* .. Chip ..................................................................... */
@@ -60,7 +74,6 @@
   font-size: 16px;
   cursor: grab;
 }
-.chip:hover { background-color: #2C5282; }
 
 .chipCloseButton {
   margin-left: 15px;
@@ -71,6 +84,7 @@
   font-weight: bold;
 }
 .chipCloseButton:hover { color: red; }
+.chipCloseButton:focus { color: red; }
 
 /* -- VisualID ----------------------------------------------------------------- */
 [data-visualid]::after {
