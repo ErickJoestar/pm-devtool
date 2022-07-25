@@ -1,4 +1,4 @@
-import { AttributeType, NodeName } from 'common';
+import { AttributeType, NodeName, TextAlign, VerticalAlign } from 'common';
 
 // ********************************************************************************
 // == Theme =======================================================================
@@ -6,6 +6,12 @@ export const theme: Record<NodeName, Partial<Record<AttributeType, string>>> = {
   // ProseMirror Nodes
   [NodeName.DOC]: {},
   [NodeName.HEADING]: {},
+  [NodeName.IMAGE]: {
+    [AttributeType.TextAlign]: TextAlign.left,
+    [AttributeType.VerticalAlign]: VerticalAlign.bottom,
+    [AttributeType.Width]: '300px',
+    [AttributeType.Height]: '300px',
+  },
   [NodeName.PARAGRAPH]: {
     [AttributeType.FontSize]: '16px',
     [AttributeType.TextColor]: '#333',

@@ -62,6 +62,7 @@ export const DefaultTheme: Theme = {
   nodes:{
     [NodeName.DOC]: {/*no defined value*/},
     [NodeName.HEADING]: {/*no defined value*/},
+    [NodeName.IMAGE]: {/*no defined value*/},
     [NodeName.PARAGRAPH]: {
       [AttributeType.TextColor]: '#000',
       [AttributeType.FontSize]: '16px',
@@ -97,6 +98,7 @@ export const GoogleDocsTheme: Theme = {
   nodes:{
     [NodeName.DOC]: {/*no defined value*/},
     [NodeName.HEADING]: {/*no defined value*/},
+    [NodeName.IMAGE]: {/*no defined value*/},
     [NodeName.PARAGRAPH]: {
       [AttributeType.FontSize]: '11pt',
       [AttributeType.TextColor]: '#353744',

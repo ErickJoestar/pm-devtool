@@ -5,12 +5,13 @@ import { useState } from 'react';
 interface DialogButton {
   text: string;
   onClick: (inputValue: string) => void;
+  loading: boolean;
 }
 interface Props {
   dialogTitle: string;
   inputPlaceholder: string;
   buttons: DialogButton[];
-  enterCallback: (inputValue: string) => void;
+  enterCallback: (inputValue: string) => Promise<void>;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -24,12 +25,12 @@ export const Dialog: React.FC<Props> = ({ dialogTitle, inputPlaceholder, enterCa
     onClose();
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if(event.key !== 'Enter') return;
     /* else -- enter pressed */
 
     event.preventDefault();
-    enterCallback(inputValue);
+    await enterCallback(inputValue);
     handleClose();
   };
 
@@ -60,6 +61,7 @@ export const Dialog: React.FC<Props> = ({ dialogTitle, inputPlaceholder, enterCa
               key={buttonIndex}
               variant='ghost'
               colorScheme='blue'
+              isLoading={button.loading}
               onClick={() => button.onClick(inputValue)}
             >
               {button.text}

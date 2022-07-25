@@ -19,6 +19,7 @@
 .Editor { outline: 1px solid transparent; }
 .inlineNodeContainer { position: relative; display: inline-block; }
 .selected { outline: 2px solid black; }
+.ProseMirror-selectednode { outline: 2px solid black; }
 
 /* -- Highlight ---------------------------------------------------------------- */
 .ProseMirror-focused .selected_text {
