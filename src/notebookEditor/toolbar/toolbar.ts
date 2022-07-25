@@ -1,8 +1,12 @@
 import { NodeName } from 'common';
 
 import { DocumentToolbar } from 'notebookEditor/extension/document/toolbar';
+import { CellToolbar } from 'notebookEditor/extension/table/cell/toolbar';
+import { HeaderToolbar } from 'notebookEditor/extension/table/header/toolbar';
 import { HeadingToolbar } from 'notebookEditor/extension/heading/toolbar';
 import { ParagraphToolbar } from 'notebookEditor/extension/paragraph/toolbar';
+import { RowToolbar } from 'notebookEditor/extension/table/row/toolbar';
+import { TableToolbar } from 'notebookEditor/extension/table/toolbar';
 
 import { Toolbar } from './type';
 
@@ -13,6 +17,10 @@ const TOOLBAR_MAP: Record<NodeName, Toolbar | null> = {
   [NodeName.DOC]: DocumentToolbar,
   [NodeName.TEXT]: null/*none*/,
   [NodeName.PARAGRAPH]: ParagraphToolbar,
+  [NodeName.CELL]: CellToolbar,
+  [NodeName.HEADER]: HeaderToolbar,
+  [NodeName.ROW]: RowToolbar,
+  [NodeName.TABLE]: TableToolbar,
   [NodeName.HEADING]: HeadingToolbar,
 };
 

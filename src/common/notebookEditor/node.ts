@@ -22,9 +22,13 @@ export type JSONNode<A extends Attributes = {}> = {
 
 // --------------------------------------------------------------------------------
 export enum NodeName {
+  CELL = 'cell',
   DOC = 'document',
+  HEADER = 'header',
   HEADING = 'heading',
+  ROW = 'row',
   PARAGRAPH = 'paragraph',
+  TABLE = 'table',
   TEXT = 'text',
 }
 export const getNodeName = (node: ProseMirrorNode) => node.type.name as NodeName;

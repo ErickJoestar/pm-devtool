@@ -3,9 +3,13 @@ import { MarkSpec, NodeSpec } from 'prosemirror-model';
 import { isStyleAttribute, snakeCaseToKebabCase, HTMLAttributes } from '../attribute';
 import { NotebookDocumentContent } from '../document';
 import { BoldMarkRendererSpec } from '../extension/bold';
+import { CellNodeRendererSpec } from '../extension/cell';
 import { DocumentNodeRendererSpec } from '../extension/document';
+import { HeaderNodeRendererSpec } from '../extension/header';
 import { HeadingNodeRendererSpec } from '../extension/heading';
 import { isParagraphJSONNode, ParagraphNodeRendererSpec } from '../extension/paragraph';
+import { RowNodeRendererSpec } from '../extension/row';
+import { TableNodeRendererSpec } from '../extension/table';
 import { isTextJSONNode, TextNodeRendererSpec } from '../extension/text';
 import { TextStyleMarkRendererSpec } from '../extension/textStyle';
 import { JSONMark, MarkName } from '../mark';
@@ -16,9 +20,13 @@ import { getRenderTag, AttributeRenderer, HTMLString, MarkRendererSpec, NodeRend
 // ********************************************************************************
 // == Type ========================================================================
 export const NodeRendererSpecs: Record<NodeName, NodeRendererSpec> = {
+  [NodeName.CELL]: CellNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.DOC]: DocumentNodeRendererSpec,
+  [NodeName.HEADER]: HeaderNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.HEADING]: HeadingNodeRendererSpec as any/*FIXME!!!*/,
+  [NodeName.ROW]: RowNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.PARAGRAPH]: ParagraphNodeRendererSpec as any/*FIXME!!!*/,
+  [NodeName.TABLE]: TableNodeRendererSpec as any /*FIXME!!!*/,
   [NodeName.TEXT]: TextNodeRendererSpec,
 };
 
