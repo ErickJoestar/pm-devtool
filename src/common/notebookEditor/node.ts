@@ -22,9 +22,13 @@ export type JSONNode<A extends Attributes = {}> = {
 
 // --------------------------------------------------------------------------------
 export enum NodeName {
+  BULLET_LIST = 'bulletList',
   DOC = 'document',
   HEADING = 'heading',
+  LIST_ITEM = 'listItem',
+  ORDERED_LIST = 'orderedList',
   PARAGRAPH = 'paragraph',
+  TASK_LIST = 'taskList',
   TEXT = 'text',
 }
 export const getNodeName = (node: ProseMirrorNode) => node.type.name as NodeName;
@@ -33,6 +37,7 @@ export const getNodeName = (node: ProseMirrorNode) => node.type.name as NodeName
 export enum NodeType {
   BLOCK = 'block',
   INLINE = 'inline',
+  LIST = 'list',
 }
 
 // == Utils =======================================================================

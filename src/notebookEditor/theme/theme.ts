@@ -4,12 +4,22 @@ import { AttributeType, NodeName } from 'common';
 // == Theme =======================================================================
 export const theme: Record<NodeName, Partial<Record<AttributeType, string>>> = {
   // ProseMirror Nodes
+  [NodeName.BULLET_LIST]: {
+    [AttributeType.MarginLeft]: '1.5rem'/*(SEE: BulletList.ts)*/,
+  },
   [NodeName.DOC]: {},
   [NodeName.HEADING]: {},
+  [NodeName.LIST_ITEM]: {},
   [NodeName.PARAGRAPH]: {
     [AttributeType.FontSize]: '16px',
     [AttributeType.TextColor]: '#333',
     [AttributeType.MarginLeft]: '4px',
+  },
+  [NodeName.ORDERED_LIST]: {
+    [AttributeType.MarginLeft]: '2rem'/*enough space to display up to two numbers in the list*/,
+  },
+  [NodeName.TASK_LIST]: {
+    [AttributeType.MarginLeft]: '1.5rem'/*(SEE: TaskList.ts)*/,
   },
   [NodeName.TEXT]: {},
 

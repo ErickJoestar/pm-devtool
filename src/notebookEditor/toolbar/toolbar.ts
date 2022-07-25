@@ -10,10 +10,14 @@ import { Toolbar } from './type';
 // A collection of toolbars. Each Node can have its own toolbar, if its not defined
 // in the collection nothing will be shown.
 const TOOLBAR_MAP: Record<NodeName, Toolbar | null> = {
+  [NodeName.BULLET_LIST]: null/*none*/,
   [NodeName.DOC]: DocumentToolbar,
-  [NodeName.TEXT]: null/*none*/,
-  [NodeName.PARAGRAPH]: ParagraphToolbar,
   [NodeName.HEADING]: HeadingToolbar,
+  [NodeName.LIST_ITEM]: null/*none*/,
+  [NodeName.ORDERED_LIST]: null/*none*/,
+  [NodeName.PARAGRAPH]: ParagraphToolbar,
+  [NodeName.TASK_LIST]: null/*none*/,
+  [NodeName.TEXT]: null/*none*/,
 };
 
 /**

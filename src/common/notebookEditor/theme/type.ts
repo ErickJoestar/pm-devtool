@@ -60,12 +60,16 @@ export const DefaultTheme: Theme = {
   displayName: 'Default',
 
   nodes:{
+    [NodeName.BULLET_LIST]: {/*no defined value*/},
     [NodeName.DOC]: {/*no defined value*/},
     [NodeName.HEADING]: {/*no defined value*/},
+    [NodeName.LIST_ITEM]: {/*no defined value*/},
+    [NodeName.ORDERED_LIST]: {/*no defined value*/},
     [NodeName.PARAGRAPH]: {
       [AttributeType.TextColor]: '#000',
       [AttributeType.FontSize]: '16px',
     },
+    [NodeName.TASK_LIST]: {/*no defined value*/},
     [NodeName.TEXT]:{/*no defined value*/},
   },
 
@@ -95,12 +99,16 @@ export const GoogleDocsTheme: Theme = {
   displayName: 'Default',
 
   nodes:{
+    [NodeName.BULLET_LIST]: {/*no defined value*/},
     [NodeName.DOC]: {/*no defined value*/},
     [NodeName.HEADING]: {/*no defined value*/},
+    [NodeName.LIST_ITEM]: {/*no defined value*/},
+    [NodeName.ORDERED_LIST]: {/*no defined value*/},
     [NodeName.PARAGRAPH]: {
       [AttributeType.FontSize]: '11pt',
       [AttributeType.TextColor]: '#353744',
     },
+    [NodeName.TASK_LIST]:{/*no defined value*/},
     [NodeName.TEXT]:{/*no defined value*/},
   },
 

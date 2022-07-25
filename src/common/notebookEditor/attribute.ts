@@ -31,6 +31,7 @@ export enum AttributeType {
   Id = 'id',
   Level = 'level',
   InitialMarksSet = 'initialMarksSet',
+  Start = 'start',
 }
 
 export type StyleAttributes = {

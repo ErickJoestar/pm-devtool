@@ -3,9 +3,13 @@ import { MarkSpec, NodeSpec } from 'prosemirror-model';
 import { isStyleAttribute, snakeCaseToKebabCase, HTMLAttributes } from '../attribute';
 import { NotebookDocumentContent } from '../document';
 import { BoldMarkRendererSpec } from '../extension/bold';
+import { BulletListNodeRendererSpec } from '../extension/bulletList';
 import { DocumentNodeRendererSpec } from '../extension/document';
 import { HeadingNodeRendererSpec } from '../extension/heading';
+import { ListItemNodeRendererSpec } from '../extension/listItem';
+import { OrderedListNodeRendererSpec } from '../extension/orderedList';
 import { isParagraphJSONNode, ParagraphNodeRendererSpec } from '../extension/paragraph';
+import { TaskListNodeRendererSpec } from '../extension/taskList';
 import { isTextJSONNode, TextNodeRendererSpec } from '../extension/text';
 import { TextStyleMarkRendererSpec } from '../extension/textStyle';
 import { JSONMark, MarkName } from '../mark';
@@ -16,9 +20,13 @@ import { getRenderTag, AttributeRenderer, HTMLString, MarkRendererSpec, NodeRend
 // ********************************************************************************
 // == Type ========================================================================
 export const NodeRendererSpecs: Record<NodeName, NodeRendererSpec> = {
+  [NodeName.BULLET_LIST]: BulletListNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.DOC]: DocumentNodeRendererSpec,
   [NodeName.HEADING]: HeadingNodeRendererSpec as any/*FIXME!!!*/,
+  [NodeName.LIST_ITEM]: ListItemNodeRendererSpec,
+  [NodeName.ORDERED_LIST]: OrderedListNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.PARAGRAPH]: ParagraphNodeRendererSpec as any/*FIXME!!!*/,
+  [NodeName.TASK_LIST]: TaskListNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.TEXT]: TextNodeRendererSpec,
 };
 
