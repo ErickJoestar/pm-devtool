@@ -3,6 +3,7 @@ import { MarkSpec, NodeSpec } from 'prosemirror-model';
 import { isStyleAttribute, snakeCaseToKebabCase, HTMLAttributes } from '../attribute';
 import { NotebookDocumentContent } from '../document';
 import { BoldMarkRendererSpec } from '../extension/bold';
+import { CodeBlockNodeRendererSpec } from '../extension/codeBlock';
 import { DocumentNodeRendererSpec } from '../extension/document';
 import { HeadingNodeRendererSpec } from '../extension/heading';
 import { isParagraphJSONNode, ParagraphNodeRendererSpec } from '../extension/paragraph';
@@ -11,11 +12,13 @@ import { TextStyleMarkRendererSpec } from '../extension/textStyle';
 import { JSONMark, MarkName } from '../mark';
 import { contentToJSONNode, JSONNode, NodeName } from '../node';
 import { MarkSpecs, NodeSpecs } from '../schema';
+import { computeState, RendererState } from './state';
 import { getRenderTag, AttributeRenderer, HTMLString, MarkRendererSpec, NodeRendererSpec, DATA_NODE_TYPE } from './type';
 
 // ********************************************************************************
 // == Type ========================================================================
 export const NodeRendererSpecs: Record<NodeName, NodeRendererSpec> = {
+  [NodeName.CODEBLOCK]: CodeBlockNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.DOC]: DocumentNodeRendererSpec,
   [NodeName.HEADING]: HeadingNodeRendererSpec as any/*FIXME!!!*/,
   [NodeName.PARAGRAPH]: ParagraphNodeRendererSpec as any/*FIXME!!!*/,
@@ -31,10 +34,11 @@ export const MarkRendererSpecs: Record<MarkName, MarkRendererSpec> = {
 export const convertContentToHTML = (content: NotebookDocumentContent): HTMLString => {
   const rootNode = contentToJSONNode(content);
 
-  return convertJSONContentToHTML(rootNode);
+  const state = computeState(rootNode);
+  return convertJSONContentToHTML(rootNode, state);
 };
 
-export const convertJSONContentToHTML = (node: JSONNode): HTMLString => {
+export const convertJSONContentToHTML = (node: JSONNode, state: RendererState): HTMLString => {
   const { type, content, text } = node;
   const nodeRendererSpec = NodeRendererSpecs[type];
 
@@ -45,11 +49,11 @@ export const convertJSONContentToHTML = (node: JSONNode): HTMLString => {
 
   // Gets the direct children nodes using the node content. An empty string is
   // equivalent to having no content when rendering the HTML.
-  let children = content ? content.reduce((acc, child) => `${acc}${convertJSONContentToHTML(child)}`, '') : ''/*no children*/;
+  let children = content ? content.reduce((acc, child) => `${acc}${convertJSONContentToHTML(child, state)}`, '') : ''/*no children*/;
 
   //, state In the case that the node is a Node View Renderer let the node renderer use
   // its own render function to render the node and its children.
-  if(nodeRendererSpec.isNodeViewRenderer) return nodeRendererSpec.renderNodeView(node.attrs ?? {/*empty attributes*/}, children)/*nothing else to do*/;
+  if(nodeRendererSpec.isNodeViewRenderer) return nodeRendererSpec.renderNodeView(node.attrs ?? {/*empty attributes*/}, children, state)/*nothing else to do*/;
 
   // NOTE: On the editor, a paragraph with no content is displayed as having a
   //       br node as it only child, this is an attempt to mimic that functionality

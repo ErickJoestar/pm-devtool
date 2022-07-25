@@ -1,5 +1,6 @@
 import { NodeName } from 'common';
 
+import { CodeBlockToolbar } from 'notebookEditor/extension/codeblock/toolbar';
 import { DocumentToolbar } from 'notebookEditor/extension/document/toolbar';
 import { HeadingToolbar } from 'notebookEditor/extension/heading/toolbar';
 import { ParagraphToolbar } from 'notebookEditor/extension/paragraph/toolbar';
@@ -7,9 +8,10 @@ import { ParagraphToolbar } from 'notebookEditor/extension/paragraph/toolbar';
 import { Toolbar } from './type';
 
 // ********************************************************************************
-// A collection of toolbars. Each Node can have its own toolbar, if its not defined
-// in the collection nothing will be shown.
-const TOOLBAR_MAP: Record<NodeName, Toolbar | null> = {
+  // A collection of toolbars. Each Node can have its own toolbar, if its not defined
+  // in the collection nothing will be shown.
+  const TOOLBAR_MAP: Record<NodeName, Toolbar | null> = {
+  [NodeName.CODEBLOCK]: CodeBlockToolbar,
   [NodeName.DOC]: DocumentToolbar,
   [NodeName.TEXT]: null/*none*/,
   [NodeName.PARAGRAPH]: ParagraphToolbar,

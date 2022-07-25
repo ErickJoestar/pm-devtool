@@ -38,16 +38,20 @@ This is the list of keyboard shortcuts that is built into the Notebook Editor.
 | <kbd>cmd</kbd><kbd>option</kbd><kbd>1</kbd>         | Toggle a Heading1 Node                                         |
 | <kbd>cmd</kbd><kbd>option</kbd><kbd>2</kbd>         | Toggle a Heading2 Node                                         |
 | <kbd>cmd</kbd><kbd>option</kbd><kbd>3</kbd>         | Toggle a Heading3 Node                                         |
-| <kbd>ctrl</kbd><kbd>option</kbd><kbd>,</kbd>        | Preview Published Notebook                                     |
+| <kbd>cmd</kbd><kbd>shift</kbd><kbd>C</kbd>          | Toggle a CodeBlock Node                                        |
+| <kbd>shift</kbd><kbd>enter</kbd>                    | (When inside a CodeBlock Node), insert a Paragraph Node below  |
+| <kbd>ctrl</kbd><kbd>option</kbd><kbd>,</kbd>        | Preview Published Notebook                                      |
 | <kbd>ctrl</kbd><kbd>option</kbd><kbd>,</kbd>        | Toggle Development Mode                                        |
-| <kbd>cmd</kbd><kbd>option</kbd><kbd>,</kbd>         | Focus the Notebook Editor                                      |
+| <kbd>cmd</kbd><kbd>option</kbd><kbd>,</kbd>         | Focus the Notebook Editor                                       |
 | <kbd>cmd</kbd><kbd>option</kbd><kbd>.</kbd>         | Focus the first available ToolItem in the toolbar              |
+
 
 ## Parse Rules
 This is the list of parse rules that are implemented in the editor
 
-| Rule                                                             | Description                                           |
-| ---------------------------------------------------------------- | ----------------------------------------------------- |
-| Wrap text in between double * characters                         | Toggle the **bold** Mark for the corresponding text   |
-| Wrap text in between double _ characters                         | Toggle the **bold** Mark for the corresponding text   |
-| Type between 1 and 3 '#' characters at the start of a new line   | Toggle a Heading Node with the corresponding level    |
+| Rule                                                             | Description                                                    |
+| ---------------------------------------------------------------- | -------------------------------------------------------------- |
+| Wrap text in between double * characters                         | Toggle the **bold** Mark for the corresponding text            |
+| Wrap text in between double _ characters                         | Toggle the **bold** Mark for the corresponding text            |
+| Type between 1 and 3 '#' characters at the start of a new line   | Toggle a Heading Node with the corresponding level             |
+| Type 3 '`' characters and press enter or tab                     | Wrap the text in the current Block Node in a CodeBlock Node    |

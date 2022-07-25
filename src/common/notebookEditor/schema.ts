@@ -1,6 +1,7 @@
 import { MarkSpec, NodeSpec, Schema } from 'prosemirror-model';
 
 import { BoldMarkSpec } from './extension/bold';
+import { CodeBlockNodeSpec } from './extension/codeBlock';
 import { DocumentNodeSpec } from './extension/document';
 import { HeadingNodeSpec } from './extension/heading';
 import { ParagraphNodeSpec } from './extension/paragraph';
@@ -12,6 +13,7 @@ import { NodeName } from './node';
 // ********************************************************************************
 // ================================================================================
 export const NodeSpecs: Record<NodeName, NodeSpec> = {
+  [NodeName.CODEBLOCK]: CodeBlockNodeSpec,
   [NodeName.DOC]: DocumentNodeSpec,
   [NodeName.HEADING]: HeadingNodeSpec,
   [NodeName.PARAGRAPH]: ParagraphNodeSpec,

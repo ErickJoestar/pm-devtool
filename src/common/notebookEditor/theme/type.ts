@@ -60,6 +60,7 @@ export const DefaultTheme: Theme = {
   displayName: 'Default',
 
   nodes:{
+    [NodeName.CODEBLOCK]: {/*no defined value*/},
     [NodeName.DOC]: {/*no defined value*/},
     [NodeName.HEADING]: {/*no defined value*/},
     [NodeName.PARAGRAPH]: {
@@ -95,6 +96,7 @@ export const GoogleDocsTheme: Theme = {
   displayName: 'Default',
 
   nodes:{
+    [NodeName.CODEBLOCK]: {/*no defined value*/},
     [NodeName.DOC]: {/*no defined value*/},
     [NodeName.HEADING]: {/*no defined value*/},
     [NodeName.PARAGRAPH]: {

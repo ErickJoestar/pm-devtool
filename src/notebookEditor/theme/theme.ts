@@ -5,7 +5,9 @@ import { AttributeType, NodeName } from 'common';
 export const theme: Record<NodeName, Partial<Record<AttributeType, string>>> = {
   // ProseMirror Nodes
   [NodeName.DOC]: {},
-  [NodeName.HEADING]: {},
+  [NodeName.HEADING]: {
+    [AttributeType.MarginLeft]: '4px',
+  },
   [NodeName.PARAGRAPH]: {
     [AttributeType.FontSize]: '16px',
     [AttributeType.TextColor]: '#333',
@@ -14,7 +16,7 @@ export const theme: Record<NodeName, Partial<Record<AttributeType, string>>> = {
   [NodeName.TEXT]: {},
 
   // Custom Nodes
-  // Currently nothing
+  [NodeName.CODEBLOCK]: {},
 } as const;
 
 // == CSS =========================================================================
