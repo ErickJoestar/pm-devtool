@@ -26,6 +26,7 @@ export enum NodeName {
   HEADING = 'heading',
   PARAGRAPH = 'paragraph',
   TEXT = 'text',
+  TITLE = 'title',
 }
 export const getNodeName = (node: ProseMirrorNode) => node.type.name as NodeName;
 

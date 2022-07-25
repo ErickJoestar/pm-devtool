@@ -12,6 +12,11 @@ export const theme: Record<NodeName, Partial<Record<AttributeType, string>>> = {
     [AttributeType.MarginLeft]: '4px',
   },
   [NodeName.TEXT]: {},
+  [NodeName.TITLE]: {
+    [AttributeType.FontSize]: '45px',
+    [AttributeType.TextColor]: '#05284C',
+    [AttributeType.MarginLeft]: '4px',
+  },
 
   // Custom Nodes
   // Currently nothing

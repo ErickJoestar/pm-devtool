@@ -6,6 +6,7 @@ import { HeadingNodeSpec } from './extension/heading';
 import { ParagraphNodeSpec } from './extension/paragraph';
 import { TextNodeSpec } from './extension/text';
 import { TextStyleMarkSpec } from './extension/textStyle';
+import { TitleNodeSpec } from './extension/title';
 import { MarkName } from './mark';
 import { NodeName } from './node';
 
@@ -16,6 +17,7 @@ export const NodeSpecs: Record<NodeName, NodeSpec> = {
   [NodeName.HEADING]: HeadingNodeSpec,
   [NodeName.PARAGRAPH]: ParagraphNodeSpec,
   [NodeName.TEXT]: TextNodeSpec,
+  [NodeName.TITLE]: TitleNodeSpec,
 };
 
 export const MarkSpecs: Record<MarkName, MarkSpec> = {

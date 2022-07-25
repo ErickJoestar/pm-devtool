@@ -20,6 +20,17 @@
 .inlineNodeContainer { position: relative; display: inline-block; }
 .selected { outline: 2px solid black; }
 
+/* -- Title -------------------------------------------------------------------- */
+/* .. Placeholder .............................................................. */
+[data-title]::before {
+  color: #ADB5BD;
+  content: attr(data-title);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.bold { font-weight: bold; }
+
 /* -- Highlight ---------------------------------------------------------------- */
 .ProseMirror-focused .selected_text {
   /*only show background when editor is no longer focused*/

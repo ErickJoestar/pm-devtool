@@ -7,6 +7,7 @@ export * from './extension/document';
 export * from './extension/heading';
 export * from './extension/paragraph';
 export * from './extension/text';
+export * from './extension/title';
 export * from './extension/textStyle';
 export * from './mark';
 export * from './node';
