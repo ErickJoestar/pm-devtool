@@ -71,6 +71,7 @@ export const DefaultTheme: Theme = {
 
   marks: {
     [MarkName.BOLD]:  {/*no defined value*/},
+    [MarkName.LINK]:  {/*no defined value*/},
     [MarkName.TEXT_STYLE]:  {/*no defined value*/},
   },
 
@@ -106,6 +107,7 @@ export const GoogleDocsTheme: Theme = {
 
   marks: {
     [MarkName.BOLD]:  {/*no defined value*/},
+    [MarkName.LINK]:  {/*no defined value*/},
     [MarkName.TEXT_STYLE]:  {/*no defined value*/},
   },
 

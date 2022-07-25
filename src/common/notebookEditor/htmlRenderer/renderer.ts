@@ -5,6 +5,7 @@ import { NotebookDocumentContent } from '../document';
 import { BoldMarkRendererSpec } from '../extension/bold';
 import { DocumentNodeRendererSpec } from '../extension/document';
 import { HeadingNodeRendererSpec } from '../extension/heading';
+import { LinkMarkRendererSpec } from '../extension/link';
 import { isParagraphJSONNode, ParagraphNodeRendererSpec } from '../extension/paragraph';
 import { isTextJSONNode, TextNodeRendererSpec } from '../extension/text';
 import { TextStyleMarkRendererSpec } from '../extension/textStyle';
@@ -24,6 +25,7 @@ export const NodeRendererSpecs: Record<NodeName, NodeRendererSpec> = {
 
 export const MarkRendererSpecs: Record<MarkName, MarkRendererSpec> = {
   [MarkName.BOLD]: BoldMarkRendererSpec,
+  [MarkName.LINK]: LinkMarkRendererSpec,
   [MarkName.TEXT_STYLE]: TextStyleMarkRendererSpec as any/*FIXME!!!*/,
 };
 
