@@ -81,13 +81,13 @@ export const IMAGE_HEIGHT_MODIFIER_TOOL = 'imgHeightModifierTool';
 // == Util ========================================================================
 export const createDefaultImageAttributes = (): ImageAttributes =>
   ({
-    src: DEFAULT_IMAGE_SRC,
-    alt: DEFAULT_IMAGE_ALT,
-    title: DEFAULT_IMAGE_TITLE,
-    width: DEFAULT_IMAGE_WIDTH,
-    height: DEFAULT_IMAGE_HEIGHT,
-    textAlign: TextAlign.left,
-    verticalAlign: VerticalAlign.bottom,
+    [AttributeType.Src]: DEFAULT_IMAGE_SRC,
+    [AttributeType.Alt]: DEFAULT_IMAGE_ALT,
+    [AttributeType.Title]: DEFAULT_IMAGE_TITLE,
+    [AttributeType.Width]: DEFAULT_IMAGE_WIDTH,
+    [AttributeType.Height]: DEFAULT_IMAGE_HEIGHT,
+    [AttributeType.TextAlign]: TextAlign.left,
+    [AttributeType.VerticalAlign]: VerticalAlign.bottom,
   });
 
 /**
