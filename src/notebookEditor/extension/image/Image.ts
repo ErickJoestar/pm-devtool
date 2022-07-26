@@ -1,12 +1,10 @@
-import { mergeAttributes, Node } from '@tiptap/core';
+import { Node } from '@tiptap/core';
 
-import { defaultIMGTag, defaultParseIMGTag, isStyleAttribute, snakeCaseToKebabCase, AttributeType, ImageNodeSpec, SetAttributeType } from 'common';
+import { defaultParseIMGTag, AttributeType, ImageNodeSpec, SetAttributeType } from 'common';
 import { DialogStorage } from 'notebookEditor/model/DialogStorage';
 import { NoOptions } from 'notebookEditor/model/type';
-import { INLINE_NODE_CONTAINER_CLASS } from 'notebookEditor/theme/theme';
 
-import { setAttributeParsingBehavior } from '../util/attribute';
-import { nodeToTagID } from '../util/node';
+import { getNodeOutputSpec, setAttributeParsingBehavior } from '../util/attribute';
 import { insertAndSelectImage } from './command';
 import { imagePaste } from './imagePaste';
 
@@ -42,19 +40,5 @@ export const Image = Node.create<NoOptions, DialogStorage>({
 
   // -- View ----------------------------------------------------------------------
   parseHTML() { return [{ tag: defaultParseIMGTag }]; },
-  renderHTML({ node, HTMLAttributes }) { return [ defaultIMGTag, mergeAttributes(HTMLAttributes/*add attrs to pasted html*/, { id: nodeToTagID(node)/*used by plugin*/, class: INLINE_NODE_CONTAINER_CLASS/*inline required*/, contentEditable: 'false'/*inline required*/, style: getCSSStyleFromAttributes(HTMLAttributes) }) ]; },
+  renderHTML({ node, HTMLAttributes }) { return getNodeOutputSpec(node, HTMLAttributes); },
 });
-
-// TODO: Use getOutputSpec instead of this
-const getCSSStyleFromAttributes = (attributes: Record<string, any>) => {
-  // get all "pair:value;" from the specified attributes and merge them in a string
-  const properties = Object.keys(attributes).filter(isStyleAttribute);
-  const stylesString = properties.reduce((acc, property) => {
-    const value = attributes[property];
-    if(!value) return acc/*nothing to parse*/;
-    const kebabCase = snakeCaseToKebabCase(property);
-    const parsed = `${kebabCase}:${value};`;
-    return `${acc}${parsed}`;
-  }, '');
-  return stylesString;
-};
