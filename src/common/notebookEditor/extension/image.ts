@@ -1,6 +1,6 @@
 import { Node as ProseMirrorNode, NodeSpec } from 'prosemirror-model';
 
-import { noNodeSpecAttributeDefaultValue, AttributesTypeFromNodeSpecAttributes, TextAlign, VerticalAlign } from '../attribute';
+import { noNodeSpecAttributeDefaultValue, AttributeType, AttributesTypeFromNodeSpecAttributes, TextAlign, VerticalAlign } from '../attribute';
 import { NodeRendererSpec } from '../htmlRenderer/type';
 import { NodeName } from '../node';
 import { NotebookSchemaType } from '../schema';
@@ -23,13 +23,13 @@ export const DEFAULT_IMAGE_HEIGHT = '300px';
 
 // NOTE: This values must have matching types the ones defined in the Extension.
 const ImageAttributeSpec = {
-  src: noNodeSpecAttributeDefaultValue<string>(),
-  alt: noNodeSpecAttributeDefaultValue<string | undefined>(),
-  title: noNodeSpecAttributeDefaultValue<string | undefined>(),
-  width: noNodeSpecAttributeDefaultValue<string>(),
-  height: noNodeSpecAttributeDefaultValue<string>(),
-  textAlign: noNodeSpecAttributeDefaultValue<TextAlign>(),
-  verticalAlign: noNodeSpecAttributeDefaultValue<VerticalAlign>(),
+  [AttributeType.Src]: noNodeSpecAttributeDefaultValue<string>(),
+  [AttributeType.Alt]: noNodeSpecAttributeDefaultValue<string>(),
+  [AttributeType.Title]: noNodeSpecAttributeDefaultValue<string>(),
+  [AttributeType.Width]: noNodeSpecAttributeDefaultValue<string>(),
+  [AttributeType.Height]: noNodeSpecAttributeDefaultValue<string>(),
+  [AttributeType.TextAlign]: noNodeSpecAttributeDefaultValue<string>(),
+  [AttributeType.VerticalAlign]: noNodeSpecAttributeDefaultValue<string>(),
 };
 export type ImageAttributes = AttributesTypeFromNodeSpecAttributes<typeof ImageAttributeSpec>;
 
