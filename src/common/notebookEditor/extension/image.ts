@@ -2,38 +2,83 @@ import { Node as ProseMirrorNode, NodeSpec } from 'prosemirror-model';
 
 import { noNodeSpecAttributeDefaultValue, AttributeType, AttributesTypeFromNodeSpecAttributes, TextAlign, VerticalAlign } from '../attribute';
 import { NodeRendererSpec } from '../htmlRenderer/type';
-import { NodeName } from '../node';
+import { JSONNode, NodeName } from '../node';
 import { NotebookSchemaType } from '../schema';
 
 // ********************************************************************************
-export const defaultIMGTag = 'img';
-export const defaultParseIMGTag = 'img[src]';
-export const base64ParseIMGTag = 'img[src]:not([src^="data:"])';
-export const MAX_IMG_WIDTH = 500/*px*/;
-export const MAX_IMG_HEIGHT = 500/*px*/;
-
 // ================================================================================
-// -- Attribute -------------------------------------------------------------------
-export const DEFAULT_IMAGE_ID = 'Image ID'/*FIXME: Cannot import DEFAULT_NODE_ID from uniqueNodeId*/;
+// NOTE: This values must have matching types the ones defined in the Extension.
+const ImageAttributeSpec = {
+  /** The rendered img tag's src attribute */
+  [AttributeType.Src]: noNodeSpecAttributeDefaultValue<string>(),
+
+  /** The rendered img tag's alt attribute */
+  [AttributeType.Alt]: noNodeSpecAttributeDefaultValue<string>(),
+
+  /** The rendered img tag's title attribute */
+  [AttributeType.Title]: noNodeSpecAttributeDefaultValue<string>(),
+
+  /** The rendered image width */
+  [AttributeType.Width]: noNodeSpecAttributeDefaultValue<string>(),
+
+  /** The rendered image height */
+  [AttributeType.Height]: noNodeSpecAttributeDefaultValue<string>(),
+
+  /** The rendered image textAlign style attribute */
+  [AttributeType.TextAlign]: noNodeSpecAttributeDefaultValue<string>(),
+
+  /** The rendered image alignment with respect to its parent paragraph */
+  [AttributeType.VerticalAlign]: noNodeSpecAttributeDefaultValue<string>(),
+};
+export type ImageAttributes = AttributesTypeFromNodeSpecAttributes<typeof ImageAttributeSpec>;
+
+// == Spec ========================================================================
+// -- Node Spec -------------------------------------------------------------------
+export const ImageNodeSpec: NodeSpec = {
+  name: NodeName.IMAGE,
+  inline: true,
+  group: 'inline',
+  draggable: true,
+};
+
+// -- Render Spec -----------------------------------------------------------------
+export const ImageNodeRendererSpec: NodeRendererSpec<ImageAttributes> = {
+  tag: 'img',
+  attributes: {/*TODO: Add attributes*/},
+};
+
+// == Type ========================================================================
+// -- Node Type -------------------------------------------------------------------
+// NOTE: this is the only way since PM does not provide a way to specify the type
+//       of the attributes
+export type ImageNodeType = ProseMirrorNode<NotebookSchemaType> & { attrs: ImageAttributes; };
+export const isImageNode = (node: ProseMirrorNode<NotebookSchemaType>): node is ImageNodeType => node.type.name === NodeName.IMAGE;
+
+// -- JSON Node Type --------------------------------------------------------------
+export type ImageJSONNodeType = JSONNode<ImageAttributes> & { type: NodeName.IMAGE; };
+export const isImageJSONNode = (node: JSONNode): node is ImageJSONNodeType => node.type === NodeName.IMAGE;
+
+// --------------------------------------------------------------------------------
 export const DEFAULT_IMAGE_SRC = 'https://via.placeholder.com/300.png/09f/fff';
 export const DEFAULT_IMAGE_ALT = 'image';
 export const DEFAULT_IMAGE_TITLE = 'image';
 export const DEFAULT_IMAGE_WIDTH = '300px';
 export const DEFAULT_IMAGE_HEIGHT = '300px';
 
-// NOTE: This values must have matching types the ones defined in the Extension.
-const ImageAttributeSpec = {
-  [AttributeType.Src]: noNodeSpecAttributeDefaultValue<string>(),
-  [AttributeType.Alt]: noNodeSpecAttributeDefaultValue<string>(),
-  [AttributeType.Title]: noNodeSpecAttributeDefaultValue<string>(),
-  [AttributeType.Width]: noNodeSpecAttributeDefaultValue<string>(),
-  [AttributeType.Height]: noNodeSpecAttributeDefaultValue<string>(),
-  [AttributeType.TextAlign]: noNodeSpecAttributeDefaultValue<string>(),
-  [AttributeType.VerticalAlign]: noNodeSpecAttributeDefaultValue<string>(),
-};
-export type ImageAttributes = AttributesTypeFromNodeSpecAttributes<typeof ImageAttributeSpec>;
+export const defaultIMGTag = 'img';
+export const defaultParseIMGTag = 'img[src]';
+export const base64ParseIMGTag = 'img[src]:not([src^="data:"])';
+export const MAX_IMG_WIDTH = 500/*px*/;
+export const MAX_IMG_HEIGHT = 500/*px*/;
 
-// ................................................................................
+// == Tool ========================================================================
+export const IMAGE_SRC_MODIFIER_TOOL = 'imgSrcModifierTool';
+export const IMAGE_ALT_MODIFIER_TOOL = 'imgAltModifierTool';
+export const IMAGE_TITLE_MODIFIER_TOOL = 'imgTitleModifierTool';
+export const IMAGE_WIDTH_MODIFIER_TOOL = 'imgWidthModifierTool';
+export const IMAGE_HEIGHT_MODIFIER_TOOL = 'imgHeightModifierTool';
+
+// == Util ========================================================================
 export const createDefaultImageAttributes = (): ImageAttributes =>
   ({
     src: DEFAULT_IMAGE_SRC,
@@ -45,7 +90,6 @@ export const createDefaultImageAttributes = (): ImageAttributes =>
     verticalAlign: VerticalAlign.bottom,
   });
 
-// .. Resize ......................................................................
 /**
  * Checks to see whether the dimensions of an {@link HTMLImageElement} are within
  * the boundaries of what is appropriate to insert into the document, or if the
@@ -73,7 +117,6 @@ export const createDefaultImageAttributes = (): ImageAttributes =>
   };
 };
 
-// .. Metadata ....................................................................
 /**
  * Creates a new {@link HTMLImageElement} and waits for it to load before
  * returning it, so that its naturalWidth and naturalHeight properties can be used
@@ -87,32 +130,3 @@ export const getImageMeta = (url: string) => {
       img.onerror = () => reject();
   });
 };
-
-// ================================================================================
-// -- Node Spec -------------------------------------------------------------------
-export const ImageNodeSpec: NodeSpec = {
-  name: NodeName.IMAGE,
-  inline: true,
-  group: 'inline',
-  draggable: true,
-};
-
-// -- Node Type -------------------------------------------------------------------
-// NOTE: this is the only way since PM does not provide a way to specify the type
-//       of the attributes
-export type ImageNodeType = ProseMirrorNode<NotebookSchemaType> & { attrs: ImageAttributes; };
-export const isImageNode = (node: ProseMirrorNode<NotebookSchemaType>): node is ImageNodeType => node.type.name === NodeName.IMAGE;
-
-// ================================================================================
-// -- Render Spec -----------------------------------------------------------------
-export const ImageNodeRendererSpec: NodeRendererSpec<ImageAttributes> = {
-  tag: 'img',
-  attributes: {/*TODO: Add attributes*/},
-};
-
-// == Tool ========================================================================
-export const IMAGE_SRC_MODIFIER_TOOL = 'imgSrcModifierTool';
-export const IMAGE_ALT_MODIFIER_TOOL = 'imgAltModifierTool';
-export const IMAGE_TITLE_MODIFIER_TOOL = 'imgTitleModifierTool';
-export const IMAGE_WIDTH_MODIFIER_TOOL = 'imgWidthModifierTool';
-export const IMAGE_HEIGHT_MODIFIER_TOOL = 'imgHeightModifierTool';

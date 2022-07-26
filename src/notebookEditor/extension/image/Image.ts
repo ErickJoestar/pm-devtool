@@ -1,6 +1,6 @@
 import { mergeAttributes, Node } from '@tiptap/core';
 
-import { defaultIMGTag, defaultParseIMGTag, isStyleAttribute, snakeCaseToKebabCase, AttributeType, ImageNodeSpec, SetAttributeType, DEFAULT_IMAGE_ALT, DEFAULT_IMAGE_SRC, DEFAULT_IMAGE_TITLE } from 'common';
+import { defaultIMGTag, defaultParseIMGTag, isStyleAttribute, snakeCaseToKebabCase, AttributeType, ImageNodeSpec, SetAttributeType } from 'common';
 import { DialogStorage } from 'notebookEditor/model/DialogStorage';
 import { NoOptions } from 'notebookEditor/model/type';
 import { INLINE_NODE_CONTAINER_CLASS } from 'notebookEditor/theme/theme';
@@ -20,14 +20,14 @@ export const Image = Node.create<NoOptions, DialogStorage>({
   // -- Attribute -----------------------------------------------------------------
   addAttributes() {
     return {
-      src: setAttributeParsingBehavior('src', SetAttributeType.STRING, DEFAULT_IMAGE_SRC),
-      alt: setAttributeParsingBehavior('alt', SetAttributeType.STRING, DEFAULT_IMAGE_ALT),
-      title: setAttributeParsingBehavior('title', SetAttributeType.STRING, DEFAULT_IMAGE_TITLE),
+      [AttributeType.Src]: setAttributeParsingBehavior(AttributeType.Src, SetAttributeType.STRING),
+      [AttributeType.Alt]: setAttributeParsingBehavior(AttributeType.Alt, SetAttributeType.STRING),
+      [AttributeType.Title]: setAttributeParsingBehavior(AttributeType.Title, SetAttributeType.STRING),
 
-      [AttributeType.TextAlign]: setAttributeParsingBehavior(AttributeType.TextAlign, SetAttributeType.STRING),
-      [AttributeType.VerticalAlign]: setAttributeParsingBehavior(AttributeType.VerticalAlign, SetAttributeType.STRING),
       [AttributeType.Width]: setAttributeParsingBehavior(AttributeType.Width, SetAttributeType.NUMBER),
       [AttributeType.Height]: setAttributeParsingBehavior(AttributeType.Height, SetAttributeType.NUMBER),
+      [AttributeType.TextAlign]: setAttributeParsingBehavior(AttributeType.TextAlign, SetAttributeType.STRING),
+      [AttributeType.VerticalAlign]: setAttributeParsingBehavior(AttributeType.VerticalAlign, SetAttributeType.STRING),
     };
   },
 
