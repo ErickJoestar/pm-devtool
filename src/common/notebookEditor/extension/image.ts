@@ -44,7 +44,7 @@ export const ImageNodeSpec: NodeSpec = {
 // -- Render Spec -----------------------------------------------------------------
 export const ImageNodeRendererSpec: NodeRendererSpec<ImageAttributes> = {
   tag: 'img',
-  attributes: {/*TODO: Add attributes*/},
+  attributes: {/*no need to render attributes*/},
 };
 
 // == Type ========================================================================
@@ -65,9 +65,7 @@ export const DEFAULT_IMAGE_TITLE = 'image';
 export const DEFAULT_IMAGE_WIDTH = '300px';
 export const DEFAULT_IMAGE_HEIGHT = '300px';
 
-export const defaultIMGTag = 'img';
 export const defaultParseIMGTag = 'img[src]';
-export const base64ParseIMGTag = 'img[src]:not([src^="data:"])';
 export const MAX_IMG_WIDTH = 500/*px*/;
 export const MAX_IMG_HEIGHT = 500/*px*/;
 
